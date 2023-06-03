@@ -1,16 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Page</title>
+    <title>Impage Prompt with Stable Diffusion</title>
+    <style>
+        form {
+          margin: 0 auto;
+          width: 50%;
+        }
+        input[type=text] {
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        button[type=submit] {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 58px;
+            float: right;
+        }
+    </style>
 </head>
 <body>
-    <form method="POST" action="/">
-        <label for="text">Enter some text:</label>
-        <input type="text" name="text" id="text">
-        <button type="submit">Submit</button>
+    <h3>Welcome {{user}}! You can generate an image with stable diffusion. Wait for ~1 min for each submission to get result image.</h3>
+    <form method="POST" action="">
+        <label for="models">Model:   </label>
+        <select name="models" id="models">
+            {% for model in models %}
+            {% if model == default_model %}
+            <option value="{{ model }}" selected>{{ model }}</option>
+            {% else %}
+            <option value="{{ model }}">{{ model }}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+        <label for="prompt">Prompt:</label>
+        <input type="text" name="prompt" id="prompt" size="100" placeholder="a photo of an astronaut riding a horse on mars">
+        <button type="submit">Generate</button>
     </form>
 
     {% if img_path %}
+        <h4>{{ img_desp }}</h4>
         <img src="{{ img_path }}" alt="Result">
     {% endif %}
 </body>
