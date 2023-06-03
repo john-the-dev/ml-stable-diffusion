@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+</head>
+<body>
+    <form method="POST" action="/">
+        <label for="text">Enter some text:</label>
+        <input type="text" name="text" id="text">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if img_path %}
+        <img src="{{ img_path }}" alt="Result">
+    {% endif %}
+</body>
+</html>
