@@ -77,5 +77,9 @@ def index():
 def get_generated(filename):
     return send_file(f"generated/{filename}", mimetype='image/png')
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_file("images/icon dao.ai_20230603-170618.png", mimetype='image/png')
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
